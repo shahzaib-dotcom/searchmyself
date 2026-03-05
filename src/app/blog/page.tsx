@@ -1,10 +1,8 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
-  title: 'Blog | Digital Presence Report',
+  title: 'Blog',
   description: 'Learn how to improve your digital presence, build your online reputation, and understand what the internet says about you.',
 };
 
@@ -27,10 +25,8 @@ const posts = [
 
 export default function BlogPage() {
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-white">
-        <div className="max-w-4xl mx-auto px-4 py-16">
+    <div className="bg-white">
+      <div className="max-w-4xl mx-auto px-4 py-16">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Blog</h1>
           <p className="text-lg text-gray-600 mb-12">
             Tips, guides, and insights on managing your digital presence.
@@ -57,8 +53,7 @@ export default function BlogPage() {
             ))}
           </div>
         </div>
-      </main>
-      <Footer />
-    </>
+      </div>
+    </div>
   );
 }

@@ -1,8 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
 
 interface BlogPost {
   title: string;
@@ -116,7 +114,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = posts[slug];
   if (!post) return { title: 'Not Found' };
   return {
-    title: `${post.title} | Digital Presence Report`,
+    title: post.title,
     description: post.description,
   };
 }
@@ -127,10 +125,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (!post) notFound();
 
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-white">
-        <article className="max-w-3xl mx-auto px-4 py-16">
+    <div className="bg-white">
+      <article className="max-w-3xl mx-auto px-4 py-16">
           <Link href="/blog" className="text-blue-600 text-sm font-medium hover:underline mb-6 inline-block">
             &larr; Back to Blog
           </Link>
@@ -179,8 +175,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </Link>
           </div>
         </article>
-      </main>
-      <Footer />
-    </>
+    </div>
   );
 }
