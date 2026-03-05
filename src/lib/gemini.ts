@@ -93,19 +93,19 @@ function buildPrompt(data: CollectedData): string {
   if (data.linkedinUrl) {
     profileSections.push(`## LinkedIn Profile
 - URL: ${data.linkedinUrl}
-- ${data.linkedinMeta.accessible ? `Title: ${data.linkedinMeta.title}\nDescription: ${data.linkedinMeta.description}\nImage: ${data.linkedinMeta.image || 'none'}` : 'Metadata: Could not be fetched (profile may be private or restricted)'}`);
+- ${data.linkedinMeta.accessible ? `Title: ${data.linkedinMeta.title}\nDescription: ${data.linkedinMeta.description}\nImage: ${data.linkedinMeta.ogImage || 'none'}` : 'Metadata: Could not be fetched (profile may be private or restricted)'}`);
   }
 
   if (data.twitterUrl) {
     profileSections.push(`## Twitter/X Profile
 - URL: ${data.twitterUrl}
-- ${data.twitterMeta.accessible ? `Title: ${data.twitterMeta.title}\nDescription: ${data.twitterMeta.description}\nImage: ${data.twitterMeta.image || 'none'}` : 'Metadata: Could not be fetched (profile may be private or restricted)'}`);
+- ${data.twitterMeta.accessible ? `Title: ${data.twitterMeta.title}\nDescription: ${data.twitterMeta.description}\nImage: ${data.twitterMeta.ogImage || 'none'}` : 'Metadata: Could not be fetched (profile may be private or restricted)'}`);
   }
 
   if (data.instagramUrl) {
     profileSections.push(`## Instagram Profile
 - URL: ${data.instagramUrl}
-- ${data.instagramMeta.accessible ? `Title: ${data.instagramMeta.title}\nDescription: ${data.instagramMeta.description}\nImage: ${data.instagramMeta.image || 'none'}` : 'Metadata: Could not be fetched (profile may be private or restricted)'}`);
+- ${data.instagramMeta.accessible ? `Title: ${data.instagramMeta.title}\nDescription: ${data.instagramMeta.description}\nImage: ${data.instagramMeta.ogImage || 'none'}` : 'Metadata: Could not be fetched (profile may be private or restricted)'}`);
   }
 
   const providedPlatforms = [
