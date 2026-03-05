@@ -16,7 +16,27 @@ export function DownloadButton({ name }: { name: string }) {
         margin: [10, 10, 10, 10],
         filename: `Digital-Presence-Report-${name.replace(/\s+/g, '-')}.pdf`,
         image: { type: 'jpeg', quality: 0.95 },
-        html2canvas: { scale: 2, useCORS: true, logging: false },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          onclone: (clonedDoc: Document) => {
+            // Fix: html2pdf.js cannot parse CSS lab()/oklch() color functions
+            // used by Tailwind CSS v4. Convert all colors to RGB inline styles.
+            const allElements = clonedDoc.querySelectorAll('*');
+            allElements.forEach((el) => {
+              const htmlEl = el as HTMLElement;
+              const computed = window.getComputedStyle(el);
+              htmlEl.style.color = computed.color;
+              htmlEl.style.backgroundColor = computed.backgroundColor;
+              htmlEl.style.borderColor = computed.borderColor;
+              htmlEl.style.borderTopColor = computed.borderTopColor;
+              htmlEl.style.borderRightColor = computed.borderRightColor;
+              htmlEl.style.borderBottomColor = computed.borderBottomColor;
+              htmlEl.style.borderLeftColor = computed.borderLeftColor;
+            });
+          },
+        },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const },
         pagebreak: { mode: ['css', 'legacy'] },
       };
